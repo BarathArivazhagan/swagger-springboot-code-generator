@@ -1,0 +1,1 @@
+[{"name":"Employee","type":"entity","packageName":null,"properties":{"employeeId":"long","employeeName":"string"}}]

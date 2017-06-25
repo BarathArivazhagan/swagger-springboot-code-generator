@@ -23,9 +23,9 @@ public class ModelGenerator {
 	@Autowired
 	private PackageGenerator packageGenerator;
 	
-	private static final Path path=new File("/Users/barath/Eclipseworkspace/pluginws/microservice-codegen-tool/src/main/resources").toPath();
+	//private static final Path path=new File("/Users/barath/Eclipseworkspace/pluginws/microservice-codegen-tool/src/main/resources").toPath();
 	
-	public Object generateModel(RequestModel requestModel){
+	public Object generateModel(RequestModel requestModel,Path path){
 		
 		System.out.println(JacksonUtils.toJson(requestModel));
 		List<JavaFile> files=packageGenerator.generatePackages(requestModel);

@@ -31,7 +31,7 @@ public class CodeGenerationInitializer {
 		if(!StringUtils.isEmpty(filePath)){
 			
 			RequestModel requestModel=(RequestModel) JacksonUtils.fromJsonFile(filePath,RequestModel.class);
-			modelGenerator.generateModel(requestModel);
+			//modelGenerator.generateModel(requestModel);
 		}
 		
 	}
