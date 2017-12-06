@@ -1,0 +1,21 @@
+package {{packageName}}.repository;
+
+
+import java.util.List;
+{{#isCrud}}
+import org.springframework.data.repository.CrudRepository;
+{{/isCrud}}
+{{#isJpa}}
+import org.springframework.data.jpa.repository.JpaRepository;
+{{/isJpa}}
+import {{packageName}}.entity.*;
+
+import {{packageName}}.entity.{{ClassName}};
+
+public interface {{ClassName}}Repository extends {{#isCrud}}Crud{{/isCrud}}{{#isJpa}}Jpa{{/isJpa}}Repository<{{ClassName}}, {{serializableType}}> {
+
+	{{#properties}}
+	 {{^primaryKey}}List<{{ClassName}}>  findBy{{PropertyName}}({{type}} {{propertyName}});{{/primaryKey}}	
+	{{/properties}}
+	
+}

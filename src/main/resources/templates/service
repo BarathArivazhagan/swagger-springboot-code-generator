@@ -1,0 +1,97 @@
+package {{packageName}}.service;
+
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.stereotype.Service;
+
+
+import {{packageName}}.entity.{{ClassName}};
+import {{packageName}}.repository.{{ClassName}}Repository;
+
+import {{packageName}}.entity.*;
+/**
+ * This class {{ClassName}} provides services to access the repository.
+ *
+ * <p>
+ * Service Class that provides the implementations for the {{ClassName}}Service API
+ * Methods with the help of the {{ClassName}}Repository object
+ * </p>
+ *
+ */
+
+@Service
+public class {{ClassName}}Service{
+
+	private static final Logger logger = LoggerFactory.getLogger({{ClassName}}Service.class);
+	
+	
+	private {{ClassName}}Repository {{className}}Repository;
+
+		
+	
+	/**
+	 * Paramaterized constructor
+	 */
+	public {{ClassName}}Service({{ClassName}}Repository {{className}}Repository) {
+		this.{{className}}Repository = {{className}}Repository;
+	}
+	
+	/**
+	 * Simple POST Method
+	 * 
+	 * @return {{ClassName}}
+	 */
+	 public {{ClassName}} save{{ClassName}}({{ClassName}} {{className}}){	
+		
+		return {{className}}Repository.save({{className}});
+	}
+	
+	
+	/**
+	 * Simple GET one Method
+	 * 
+	 * @return  {{ClassName}} entity
+	 */	
+	public {{ClassName}} getBy{{SerializableParamName}}({{serializableType}} param){		
+		
+		
+		return {{className}}Repository.findOne(param);
+	}
+	
+	
+	/**
+	 * Simple GET ALL Method
+	 * 
+	 * @return list of {{ClassName}} entities
+	 */	
+	public List<{{ClassName}}> getAll{{ClassName}}(){		
+		
+		
+		return {{className}}Repository.findAll();
+	}
+	
+	/**
+	 * Simple DELETE Method
+	 * 
+	 * 
+	 */	
+	public void delete{{ClassName}}({{ClassName}} {{className}}){		
+		
+		{{className}}Repository.delete({{className}});
+	}
+	
+	
+{{#properties}}
+ {{^primaryKey}}
+	public List<{{ClassName}}> getBy{{PropertyName}}({{type}} {{propertyName}}){		
+		
+		return {{className}}Repository.findBy{{PropertyName}}({{propertyName}});
+	}
+ {{/primaryKey}}	
+{{/properties}}
+	
+
+	
+}

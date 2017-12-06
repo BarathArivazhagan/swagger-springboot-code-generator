@@ -1,0 +1,1 @@
+{{#isBasicType}}{{type}}{{/isBasicType}}{{#isMap}}Map<String, {{type}}>{{/isMap}}{{#isList}}List<{{type}}>{{/isList}}{{#isSet}}Set<{{type}}>{{/isSet}}

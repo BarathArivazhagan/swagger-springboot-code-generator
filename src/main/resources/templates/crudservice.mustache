@@ -1,0 +1,47 @@
+package {packageName}}
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class {{ServiceName}}Service {
+	
+	private {{ServiceName}}Repository {{serviceName}}Repo;
+	
+	public {{ServiceName}}Service({{serviceName}}Repository {{serviceName}}Repo){
+		this.{{serviceName}}Repo={{serviceName}}Repo;
+	}
+	
+	public {{ServiceName}} save{{serviceName}}({{serviceName}} {{serviceName}}){
+		
+		if(!is{{serviceName}}Exists({{serviceName}}.get{{serviceName}}Name())){
+			{{serviceName}}Repo.save({{serviceName}});
+		}
+		
+		return get{{serviceName}}({{serviceName}}.get{{serviceName}}Name());
+	}
+	
+	
+	public {{ServiceName}} get{{serviceName}}(String {{serviceName}}Name){
+		
+		return {{serviceName}}Repo.findBy{{serviceName}}Name({{serviceName}}Name);
+	}
+	
+	
+	public List<{{ServiceName}}> get{{serviceName}}s(){
+		
+		return {{serviceName}}Repo.findAll();
+	}
+	
+	public boolean is{{ServiceName}}Exists(Long {{serviceName}}Id){
+		
+		return {{serviceName}}Repo.getOne({{serviceName}}Id) !=null ? true : false;
+	}
+	
+	public boolean is{{ServiceName}}Exists(String {{serviceName}}Name){
+		
+		return {{serviceName}}Repo.findBy{{serviceName}}Name({{serviceName}}Name) !=null ? true : false;
+	}
+
+}

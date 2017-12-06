@@ -1,0 +1,26 @@
+{{#properties}}
+{{#relation}}
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+{{#OneToMany}}
+import javax.persistence.OneToMany;
+{{/OneToMany}}
+{{#OneToOne}}
+import javax.persistence.OneToOne;
+{{/OneToOne}}
+{{#ManyToMany}}
+import javax.persistence.ManyToMany;
+{{/ManyToMany}}
+{{#ManyToOne}}
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+{{/ManyToOne}}
+{{#isSet}}
+import java.util.HashSet;
+import java.util.Set;
+{{/isSet}}
+{{#isMap}}
+import java.util.HashMap;
+import java.util.Map;
+{{/isMap}}
+{{/relation}}{{/properties}}

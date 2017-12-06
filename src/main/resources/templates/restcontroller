@@ -1,0 +1,91 @@
+package {{packageName}}.controller;
+
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import {{packageName}}.entity.{{ClassName}};
+import {{packageName}}.service.{{ClassName}}Service;
+
+import {{packageName}}.entity.*;
+
+/**
+ * This class {{ClassName}} provides rest resources to manipulate {{className}} models.
+ *
+ */
+
+@RestController
+@RequestMapping(value="/{{className}}")
+@CrossOrigin(value="*")
+public class {{ClassName}}Controller{
+
+	private static final Logger logger = LoggerFactory.getLogger({{ClassName}}Controller.class);
+	
+	
+	private {{ClassName}}Service {{className}}Service;
+
+		
+	
+	
+	public {{ClassName}}Controller({{ClassName}}Service {{className}}Service) {
+		this.{{className}}Service = {{className}}Service;
+	}
+	
+	@PostMapping(value="/")
+	public {{ClassName}} save{{ClassName}}(@RequestBody {{ClassName}} {{className}}){	
+		
+		return {{className}}Service.save{{ClassName}}({{className}});
+	}
+	
+	
+	@GetMapping(value="/{{{serializableParamNameWithEscape}}}")
+	public {{ClassName}} getBy{{SerializableParamName}}(@PathVariable("{{serializableParamName}}") {{serializableType}} param){		
+		
+		
+		return {{className}}Service.getBy{{SerializableParamName}}(param);
+	}
+	
+	
+	@GetMapping(value="/")
+	public List<{{ClassName}}> getAll{{ClassName}}(){		
+		
+		
+		return {{className}}Service.getAll{{ClassName}}();
+	}
+	
+	@DeleteMapping(value="/delete/{{{serializableParamNameWithEscape}}}")
+	public void delete{{ClassName}}(@PathVariable("{{serializableParamName}}") {{serializableType}} param){		
+		
+		{{ClassName}} {{className}}={{className}}Service.getBy{{SerializableParamName}}(param);
+		{{className}}Service.delete{{ClassName}}({{className}});
+	}
+	
+	{{#properties}}
+ {{^primaryKey}}
+ 
+ 	@GetMapping(value="/{{propertyName}}")
+	public List<{{ClassName}}> getBy{{PropertyName}}(@RequestParam(name="{{propertyName}}") {{type}} {{propertyName}}){		
+		
+		return {{className}}Service.getBy{{PropertyName}}({{propertyName}});
+	}
+	
+ {{/primaryKey}}	
+{{/properties}}
+	
+	
+
+	
+}

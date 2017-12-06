@@ -1,0 +1,26 @@
+package {{package}}.model;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+{{#imports}}import {{import}};
+{{/imports}}
+{{#serializableModel}}
+import java.io.Serializable;
+{{/serializableModel}}
+{{#models}}
+{{#model}}
+{{#isEnum}}
+{{/isEnum}}
+{{^isEnum}}
+{{>entity}}
+{{/isEnum}}
+{{/model}}
+{{/models}}
