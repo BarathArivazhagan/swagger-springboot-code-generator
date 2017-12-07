@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.barath.codegen.app.model.RequestModel;
 import com.barath.codegen.app.service.SwaggerCodegenService;
+import com.barath.codegen.app.util.PropertyResolverUtility;
 import com.barath.codegen.app.util.SwaggerUtils;
 import com.google.common.base.Optional;
 
@@ -97,12 +98,13 @@ public class CustomProjectGenerator extends ProjectGenerator {
 
 	private void generateTemplateCodegen(File dir, RequestModel request) {
 		
-		String templateType=request.getTemplateType() == null ? "CRUD" : request.getTemplateType();
+		String templateType=PropertyResolverUtility.resolveTemplateType(request.getTemplateType());
 		System.out.println("template type "+templateType);
 		switch(templateType) {
 				
 		    case "CRUD": generateCRUDTemplate(dir,request);break;
-		    
+		    case "JPA": generateJPATemplate(dir,request);break;
+		    case "RABBITMQ": generateRabbitMqTemplate(dir,request);break;
 		    default : generateCRUDTemplate(dir, request);
 		}
 	}
@@ -112,6 +114,20 @@ public class CustomProjectGenerator extends ProjectGenerator {
 	
 	
 	
+	private void generateJPATemplate(File dir, RequestModel request) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	private void generateRabbitMqTemplate(File dir, RequestModel request) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 	protected void generateDockerFile(File dir, Map<String,Object> model){
 			
 	    write(new File(new File(dir,(String)model.get("baseDir")),"Dockerfile"), "Dockerfile", model);

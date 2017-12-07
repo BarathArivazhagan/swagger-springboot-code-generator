@@ -27,6 +27,25 @@ public class PropertyResolverUtility {
 		
 	}
 	
+	public static String resolveTemplateType(String templateType){
+		
+		if(StringUtils.isEmpty(templateType)){
+			return "CRUD";
+		}
+		switch(templateType.toLowerCase()){
+		
+			case "crud-repository": templateType="CRUD";break;
+			case "jpa-repository" : templateType="JPA";break;
+			case "rabbitmq-template" :   templateType="RABBITMQ";break;
+			case "kafka-template" : templateType="KAFKA";break; 		
+		
+	   }
+		
+		System.out.println("templateType "+templateType);
+		return templateType;
+		
+	}
+	
 	public static String resolveCascadeTypes(String cascadeTypes){
 		
 
