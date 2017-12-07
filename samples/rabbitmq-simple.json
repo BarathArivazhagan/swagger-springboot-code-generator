@@ -1,0 +1,35 @@
+{
+	
+
+ "rabbitmq":{
+
+    "properties":{
+
+    	"host":"",
+    	"port":"",
+    	"username":"",
+    	"password":""
+
+    },
+	 "queues":[{
+       "name": "test-queue",
+	   "durable":true
+   
+   }],
+    "exchanges":[{
+       "name": "test-exchange",
+	   "type":"direct"
+   
+   }]
+   "bindings":[{
+
+   	 "name":"testbinding",
+	 "exchangeName":"",
+	 "queueName":"",
+	 "routingKey":""
+   }],
+  
+
+ }
+
+}
