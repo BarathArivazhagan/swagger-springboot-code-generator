@@ -3,15 +3,14 @@
 codegen:
   template:
     templates:
-      - CRUD-Repository
-      - JPA-CRUD-Repository
+      - CRUD-REPOSITORY
+      - JPA-REPOSITORY
+      - RABBITMQ-TEMPLATE
 
 management:
   security:
     enabled: false
 
-model:
-  filePath: /Users/barath/Eclipseworkspace/pluginws/microservice-codegen-tool/src/main/resources/samplereq.json
 
 logging:
   level:
