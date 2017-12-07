@@ -53,9 +53,7 @@ public class CustomProjectGenerator extends ProjectGenerator {
 		System.out.println("Generated base sturcture "+dir);		
 		generateTemplateCodegen(dir,request);
 		swaggerCodeGen.generateSwaggerCodegen(dir,request);		
-		generateDockerFile(dir, model);
-		generateApplicationProperties(dir,request);
-		
+		generateDockerFile(dir, model);	
 		return dir;
 	}
 	
@@ -76,19 +74,18 @@ public class CustomProjectGenerator extends ProjectGenerator {
 	
 	
 	@SuppressWarnings("unchecked")
-	private void generateApplicationProperties(File dir, RequestModel request) {
+	private void generateApplicationProperties(File dir,Map<String,Object> model) {
 		
-		Map<String,Object> swaggerMap=SwaggerUtils.getSwaggerMap(request.getSwaggerJson());
-		Map<String,Object> appProperties=(Map<String, Object>) swaggerMap.get("properties");
+		String baseDir=(String) model.get("baseDir");
+		Map<String,Object> appProperties=(Map<String, Object>) model.get("properties");
 		Map<String,Object> applicationProperties=new HashMap<>();
 		if( appProperties !=null &&  !appProperties.isEmpty()){
 			
 			applicationProperties.put("properties", appProperties.entrySet());
-		}
-		
+		}	
 	
 		System.out.println("application properties "+applicationProperties);
-		File applicationFile=new File(dir,request.getBaseDir()+"/src/main/resources/");
+		File applicationFile=new File(dir,baseDir+"/src/main/resources/");
 		write(new File(applicationFile,"application.properties"),"application", applicationProperties);
 	}
 
@@ -115,7 +112,7 @@ public class CustomProjectGenerator extends ProjectGenerator {
 	
 	
 	private void generateJPATemplate(File dir, RequestModel request) {
-		// TODO Auto-generated method stub
+		generateCRUDTemplate(dir, request);
 		
 	}
 
@@ -150,6 +147,7 @@ public class CustomProjectGenerator extends ProjectGenerator {
 		List<Map<String, Object>> repositories=generateRepositories(dir, entities);
 		List<Map<String, Object>> services=generateServices(dir, repositories);
 		List<Map<String, Object>> controllers=generateControllers(dir, services);
+		generateApplicationProperties(dir,swaggerMap);
 	}
 	
 	public List<Map<String, Object>> generateEntities(File target,Map<String,Object> input){
