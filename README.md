@@ -6,10 +6,9 @@ springboot-microservice-code-generator is an extension of spring initializer tha
 
 1. CRUD-Repository
 2. JPA-Repository
-3. RabbitMQ-BASIC
-4. RabbitMQ-INTERMEDIATE
-5. RabbitMQ-ADVACNED
-6. Spring-Integration-with-HTTP
-7. Spring-Integration-with-Rabbit
-8. Spring-Mulitenancy
+3. RabbitMQ
+4. Apache Kafka
+5. Spring-Integration-with-HTTP
+6. Spring-Integration-with-Rabbit
+7. Spring-Multitenancy
 
