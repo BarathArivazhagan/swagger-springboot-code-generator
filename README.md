@@ -1,5 +1,5 @@
 # springboot-microservice-code-generator
------------------
+
 springboot-microservice-code-generator is an extension of spring initializer that acts as a scaffolding project to generate spring boot based applications based on the template type.
 
 ## Template Types: 
