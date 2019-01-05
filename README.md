@@ -18,6 +18,11 @@ swagger-springboot-code-generator is an extension of spring initializer that act
 
 ![view1](images/swagger_codegen_view1.png)
 
+- Click on generate project to generate scaffolding project
+
+- Unzip the downloaded package to view the generated files
+
+![view1](images/swagger_codegen_view2.png)
 
 
 ## Installation and Setup
