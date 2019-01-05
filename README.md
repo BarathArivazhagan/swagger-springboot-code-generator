@@ -14,7 +14,7 @@ swagger-springboot-code-generator is an extension of spring initializer that act
 
 - Navigate to [swagger-spring-code-generator](https://swagger-springboot-code-generator.cfapps.io/)
 
-- Take a sample swagger json from samples folder
+- Take a sample swagger json from samples folder and upload swagger definitions as shown below
 
 ![view1](images/swagger_codegen_view1.png)
 
