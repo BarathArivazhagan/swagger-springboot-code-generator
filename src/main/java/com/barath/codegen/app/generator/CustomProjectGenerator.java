@@ -1,12 +1,10 @@
 package com.barath.codegen.app.generator;
 
 import java.io.File;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +12,6 @@ import com.barath.codegen.app.model.RequestModel;
 import com.barath.codegen.app.service.SwaggerCodegenService;
 import com.barath.codegen.app.util.PropertyResolverUtility;
 import com.barath.codegen.app.util.SwaggerUtils;
-import com.google.common.base.Optional;
 
 import io.spring.initializr.generator.ProjectGenerator;
 import io.spring.initializr.generator.ProjectRequest;

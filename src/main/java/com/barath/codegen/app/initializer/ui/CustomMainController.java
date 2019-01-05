@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -21,7 +20,6 @@ import org.apache.tools.ant.types.TarFileSet;
 import org.apache.tools.ant.types.ZipFileSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -37,7 +35,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.resource.ResourceUrlProvider;
 
 import com.barath.codegen.app.generator.CustomProjectGenerator;
@@ -46,7 +43,6 @@ import com.samskivert.mustache.Mustache;
 
 import io.spring.initializr.generator.BasicProjectRequest;
 import io.spring.initializr.generator.CommandLineHelpGenerator;
-import io.spring.initializr.generator.ProjectGenerator;
 import io.spring.initializr.generator.ProjectRequest;
 import io.spring.initializr.metadata.DependencyMetadata;
 import io.spring.initializr.metadata.DependencyMetadataProvider;
@@ -190,11 +186,11 @@ public class CustomMainController extends AbstractInitializrController{
 
 	private ResponseEntity<String> dependenciesFor(InitializrMetadataVersion version,
 			String bootVersion) {
-		InitializrMetadata metadata = metadataProvider.get();
-		Version v = bootVersion != null ? Version.parse(bootVersion)
-				: Version.parse(metadata.getBootVersions().getDefault().getId());
-		DependencyMetadata dependencyMetadata = dependencyMetadataProvider.get(metadata,
-				v);
+		InitializrMetadata metadata = this.metadataProvider.get();
+		Version v = (bootVersion != null ? Version.parse(bootVersion)
+				: Version.parse(metadata.getBootVersions().getDefault().getId()));
+		DependencyMetadata dependencyMetadata = this.dependencyMetadataProvider
+				.get(metadata, v);
 		String content = new DependencyMetadataV21JsonMapper().write(dependencyMetadata);
 		return ResponseEntity.ok().contentType(version.getMediaType())
 				.eTag(createUniqueId(content))
@@ -322,7 +318,7 @@ public class CustomMainController extends AbstractInitializrController{
 		log.info("Uploading: {} ({} bytes)", download, bytes.length);
 		ResponseEntity<byte[]> result = createResponseEntity(bytes, contentType,
 				fileName);
-		projectGenerator.cleanTempFiles(dir);
+		this.projectGenerator.cleanTempFiles(dir);
 		return result;
 	}
 

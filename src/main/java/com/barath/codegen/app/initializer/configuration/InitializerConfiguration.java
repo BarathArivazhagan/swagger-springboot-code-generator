@@ -2,9 +2,22 @@ package com.barath.codegen.app.initializer.configuration;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.cache.configuration.MutableConfiguration;
-import javax.cache.expiry.CreatedExpiryPolicy;
-import javax.cache.expiry.Duration;
+//import javax.cache.configuration.MutableConfiguration;
+//import javax.cache.expiry.CreatedExpiryPolicy;
+//import javax.cache.expiry.Duration;
+
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.context.properties.bind.Binder;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.spring.initializr.generator.ProjectGenerator;
 import io.spring.initializr.generator.ProjectRequestPostProcessor;
@@ -16,25 +29,9 @@ import io.spring.initializr.metadata.InitializrMetadataBuilder;
 import io.spring.initializr.metadata.InitializrMetadataProvider;
 import io.spring.initializr.metadata.InitializrProperties;
 import io.spring.initializr.util.TemplateRenderer;
-import io.spring.initializr.web.autoconfigure.WebConfig;
-import io.spring.initializr.web.project.MainController;
 import io.spring.initializr.web.support.DefaultDependencyMetadataProvider;
 import io.spring.initializr.web.support.DefaultInitializrMetadataProvider;
 import io.spring.initializr.web.ui.UiController;
-
-import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration;
-import org.springframework.boot.autoconfigure.cache.JCacheManagerCustomizer;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.resource.ResourceUrlProvider;
 
 
 
@@ -61,10 +58,10 @@ public class InitializerConfiguration {
 		this.postProcessors = list != null ? list : new ArrayList<>();
 	}
 
-	@Bean
-	public WebConfig webConfig() {
-		return new WebConfig();
-	}
+//	@Bean
+//	public WebConfig webConfig() {
+//		return new WebConfig();
+//	}
 
 	/*@Bean
 	@ConditionalOnMissingBean
@@ -94,9 +91,8 @@ public class InitializerConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public TemplateRenderer templateRenderer(Environment environment) {
-		RelaxedPropertyResolver resolver = new RelaxedPropertyResolver(environment,
-				"spring.mustache.");
-		boolean cache = resolver.getProperty("cache", Boolean.class, true);
+		Binder binder = Binder.get(environment);
+		boolean cache = binder.bind("spring.mustache.cache", Boolean.class).orElse(true);
 		TemplateRenderer templateRenderer = new TemplateRenderer();
 		templateRenderer.setCache(cache);
 		return templateRenderer;
@@ -116,10 +112,12 @@ public class InitializerConfiguration {
 	@Bean
 	@ConditionalOnMissingBean(InitializrMetadataProvider.class)
 	public InitializrMetadataProvider initializrMetadataProvider(
-			InitializrProperties properties) {
+			InitializrProperties properties, ObjectMapper objectMapper,
+			RestTemplateBuilder restTemplateBuilder) {
 		InitializrMetadata metadata = InitializrMetadataBuilder
 				.fromInitializrProperties(properties).build();
-		return new DefaultInitializrMetadataProvider(metadata, new RestTemplate());
+		return new DefaultInitializrMetadataProvider(metadata, objectMapper,
+				restTemplateBuilder.build());
 	}
 
 	@Bean
@@ -128,26 +126,6 @@ public class InitializerConfiguration {
 		return new DefaultDependencyMetadataProvider();
 	}
 
-	@Configuration
-	@ConditionalOnClass(javax.cache.CacheManager.class)
-	static class CacheConfiguration {
 
-		@Bean
-		public JCacheManagerCustomizer initializrCacheManagerCustomizer() {
-			return cm -> {
-				cm.createCache("initializr", config().setExpiryPolicyFactory(
-						CreatedExpiryPolicy.factoryOf(Duration.TEN_MINUTES)));
-				cm.createCache("dependency-metadata", config());
-				cm.createCache("project-resources", config());
-			};
-		}
-
-		private MutableConfiguration<Object, Object> config() {
-			return new MutableConfiguration<>()
-					.setStoreByValue(false)
-					.setManagementEnabled(true).setStatisticsEnabled(true);
-		}
-
-	}
 
 }

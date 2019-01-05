@@ -1317,8 +1317,10 @@ public class CustomSwaggerGenerator extends AbstractGenerator implements Generat
 	        for (String tag : tags) {
 	            try {
 	                CodegenOperation codegenOperation = config.fromOperation(resourcePath, httpMethod, operation, swagger.getDefinitions(), swagger);
-	                codegenOperation.tags = new ArrayList<String>();
-	                codegenOperation.tags.add(config.sanitizeTag(tag));
+	                codegenOperation.tags = new ArrayList<>();
+	                Tag newTag = new Tag();
+	                newTag.setName(config.sanitizeTag(tag));
+	                codegenOperation.tags.add(newTag);
 	                config.addOperationToGroup(config.sanitizeTag(tag), resourcePath, operation, codegenOperation, operations);
 
 	                List<Map<String, List<String>>> securities = operation.getSecurity();

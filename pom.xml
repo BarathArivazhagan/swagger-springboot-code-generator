@@ -4,18 +4,18 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.barath.codegen</groupId>
-	<artifactId>springboot-microservice-code-generator</artifactId>
+	<artifactId>swagger-springboot-code-generator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>springboot-microservice-code-generator</name>
-	<description>springboot-microservice-code-generator</description>
+	<name>swagger-springboot-code-generator</name>
+	<description>swagger-springboot-code-generator</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.8.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<version>2.1.1.RELEASE</version>
+		<relativePath /> 
 	</parent>
 
 	<properties>
@@ -33,7 +33,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -42,43 +42,32 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.spring.initializr/initializr-web -->
+	
 		<dependency>
-		    <groupId>io.spring.initializr</groupId>
-		    <artifactId>initializr-web</artifactId>
-		    <version>0.5.0.BUILD-SNAPSHOT</version>
+			<groupId>io.spring.initializr</groupId>
+			<artifactId>initializr-web</artifactId>
+			<version>0.6.0.RELEASE</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.spring.initializr/initializr-actuator -->
-<dependency>
-    <groupId>io.spring.initializr</groupId>
-    <artifactId>initializr-actuator</artifactId>
-    <version>0.5.0.BUILD-SNAPSHOT</version>
-</dependency>
-		<!-- https://mvnrepository.com/artifact/io.spring.initializr/initializr -->
-<dependency>
-    <groupId>io.spring.initializr</groupId>
-    <artifactId>initializr</artifactId>
-    <version>0.5.0.BUILD-SNAPSHOT</version>
-    <type>pom</type>
-</dependency>
-		<!-- https://mvnrepository.com/artifact/io.spring.initializr/initializr-docs -->
-<dependency>
-    <groupId>io.spring.initializr</groupId>
-    <artifactId>initializr-docs</artifactId>
-    <version>0.5.0.BUILD-SNAPSHOT</version>
-</dependency>
-<dependency>
-    <groupId>io.swagger</groupId>
-    <artifactId>swagger-codegen</artifactId>
-    <version>2.2.3</version>
-</dependency>
+	
+		<dependency>
+			<groupId>io.spring.initializr</groupId>
+			<artifactId>initializr-actuator</artifactId>
+			<version>0.6.0.RELEASE</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>io.spring.initializr</groupId>
+			<artifactId>initializr-docs</artifactId>
+			<version>0.6.0.RELEASE</version>
+		</dependency>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -88,16 +77,13 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+	
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-codegen</artifactId>
+			<version>2.4.0</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.cache</groupId>
-			<artifactId>cache-api</artifactId>
-			<version>1.0.0</version>
-		</dependency>
+
 	</dependencies>
 
 	<build>
