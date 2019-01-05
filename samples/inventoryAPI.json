@@ -3,16 +3,10 @@
   "info": {
     "description": "Inventory API reference for developers",
     "version": "1.0",
-    "title": "Inventory API"   
+    "title": "Inventory API"
   },
   "host": "localhost:9001",
   "basePath": "/",
-  "tags": [
-    {
-      "name": "inventory-controller",
-      "description": "Inventory Controller"
-    }
-  ],
   "paths": {
     "/api": {
       "get": {
@@ -368,12 +362,12 @@
       }
     }
   },
-  "definitions": {
+  "entities": {
     "Inventory": {
-      "type": "object",
       "properties": {
         "locationName": {
-          "type": "string"
+          "type": "string",
+          "primaryKey": true
         },
         "productName": {
           "type": "string"
@@ -383,24 +377,6 @@
           "format": "int32"
         }
       }
-    }
-  },
-  "entities":{
-   "Inventory": {
-      "type": "object",
-      "properties": {
-        "locationName": {
-          "type": "string",
-		  "primaryKey":true
-        },
-		"productName": {
-          "type": "string"
-        },
-        "quantity": {
-          "type": "integer",
-          "format": "int32"
-        }          
-	  }
     }
   }
 }

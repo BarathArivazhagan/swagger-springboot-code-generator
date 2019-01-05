@@ -1,6 +1,4 @@
 {
-	
-
  "rabbitmq":{
 
     "properties":{
@@ -20,16 +18,14 @@
        "name": "test-exchange",
 	   "type":"direct"
    
-   }]
-   "bindings":[{
+   }],
+  "bindings":[{
 
    	 "name":"testbinding",
 	 "exchangeName":"",
 	 "queueName":"",
 	 "routingKey":""
-   }],
-  
-
+   }]
  }
 
 }

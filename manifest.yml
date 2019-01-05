@@ -1,0 +1,9 @@
+---
+applications:
+- name: swagger-springboot-code-generator
+  memory: 1024M
+  instances: 1
+  buildpack: java_buildpack
+  path: target/swagger-springboot-code-generator-0.0.1-SNAPSHOT.jar
+
+ 

@@ -10,6 +10,38 @@ swagger-springboot-code-generator is an extension of spring initializer that act
 * spring-integration-with-http
 * spring-integration-with-rabbitmq
 
+## Getting Started 
 
+- Navigate to [swagger-spring-code-generator](https://swagger-springboot-code-generator.cfapps.io/)
+
+- Take a sample swagger json from samples folder
+
+![view1](swagger_codegen_view1.png)
+
+
+
+## Installation and Setup
+
+ - Clone the repository
+ 
+ ```
+ $ git clone https://github.com/BarathArivazhagan/swagger-springboot-code-generator.git
+ ```
+ 
+ - Run maven build
+ 
+ ```
+ $ mvn clean install -DskipTests
+ ```
+ 
+ - Navigate to application [localhost:8080](http://localhost:8080)
+
+## Docker Support
+
+ Docker image is available in docker hub
+
+```
+$ docker run --name swagger-codegen -p 8080:8080 swagger-spring-codegen:latest
+```
 
 
