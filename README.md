@@ -16,7 +16,7 @@ swagger-springboot-code-generator is an extension of spring initializer that act
 
 - Take a sample swagger json from samples folder
 
-![view1](swagger_codegen_view1.png)
+![view1](images/swagger_codegen_view1.png)
 
 
 
@@ -41,7 +41,7 @@ swagger-springboot-code-generator is an extension of spring initializer that act
  Docker image is available in docker hub
 
 ```
-$ docker run --name swagger-codegen -p 8080:8080 swagger-spring-codegen:latest
+$ docker run --name swagger-codegen -p 8080:8080 barathece91/swagger-spring-codegen:latest
 ```
 
 
