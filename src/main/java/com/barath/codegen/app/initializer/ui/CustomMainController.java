@@ -64,7 +64,6 @@ public class CustomMainController extends AbstractInitializrController{
 		
 	@Value("${model.filePath:null}")
 	private String filePath;
-	
 
 	private static final Logger log = LoggerFactory.getLogger(CustomMainController.class);
 
@@ -236,10 +235,10 @@ public class CustomMainController extends AbstractInitializrController{
 	@ResponseBody
 	public ResponseEntity<byte[]> springZip(RequestModel requestModel)
 			throws IOException {
-		System.out.println("RequestModel "+requestModel.getSwaggerJson());	
+		log.info("Request Model {}",requestModel.getSwaggerJson());	
 		requestModel.setVersion(requestModel.getBootVersion());			
-		File dir = projectGenerator.generateCustomProjectStructure(requestModel);		
-		File download = projectGenerator.createDistributionFile(dir, ".zip");
+		File dir = this.projectGenerator.generateCustomProjectStructure(requestModel);		
+		File download = this.projectGenerator.createDistributionFile(dir, ".zip");
 		ProjectRequest request=requestModel;
 		String wrapperScript = getWrapperScript(request);
 		new File(dir, wrapperScript).setExecutable(true);

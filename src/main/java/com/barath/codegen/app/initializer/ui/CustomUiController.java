@@ -2,6 +2,7 @@ package com.barath.codegen.app.initializer.ui;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Map;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +44,7 @@ public class CustomUiController extends AbstractInitializrController {
 
 	private Object getTemplates() {
 		if( tempProps !=null && logger.isInfoEnabled()){
-			logger.info("Templates found {}"+tempProps.getTemplates().toString());
+			logger.info("Templates found in metadata {}",Objects.toString(tempProps.getTemplates()));
 		}
 		return tempProps.getTemplates();
 		

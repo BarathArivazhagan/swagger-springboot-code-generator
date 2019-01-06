@@ -6,28 +6,28 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Service;
 
-
 import {{packageName}}.entity.{{ClassName}};
 import {{packageName}}.repository.{{ClassName}}Repository;
 
 import {{packageName}}.entity.*;
+
+
 /**
  * This class {{ClassName}} provides services to access the repository.
  *
  * <p>
  * Service Class that provides the implementations for the {{ClassName}}Service API
- * Methods with the help of the {{ClassName}}Repository object
+ * Methods with the help of the {{ClassName}}Repository.
  * </p>
  *
  */
-
 @Service
 public class {{ClassName}}Service{
 
 	private static final Logger logger = LoggerFactory.getLogger({{ClassName}}Service.class);
 	
 	
-	private {{ClassName}}Repository {{className}}Repository;
+	private final {{ClassName}}Repository {{className}}Repository;
 
 		
 	
@@ -39,41 +39,48 @@ public class {{ClassName}}Service{
 	}
 	
 	/**
-	 * Simple POST Method
+	 * This method is used to save the entity resource.
 	 * 
 	 * @return {{ClassName}}
 	 */
 	 public {{ClassName}} save{{ClassName}}({{ClassName}} {{className}}){	
 		
+		if(logger.isInfoEnabled()) {
+			logger.info(" save resource {}",{{className}});
+		}
 		return {{className}}Repository.save({{className}});
 	}
 	
 	
 	/**
-	 * Simple GET one Method
+	 * This method is used to get the resource based on resource identity.
 	 * 
 	 * @return  {{ClassName}} entity
 	 */	
 	public {{ClassName}} getBy{{SerializableParamName}}({{serializableType}} param){		
 		
-		
-		return {{className}}Repository.findOne(param);
+		if(logger.isInfoEnabled()) {
+			logger.info(" get resource with id {}",param);
+		}
+		return {{className}}Repository.findById(param);
 	}
 	
 	
 	/**
-	 * Simple GET ALL Method
+	 * This method is used to get all the resources.
 	 * 
 	 * @return list of {{ClassName}} entities
 	 */	
 	public List<{{ClassName}}> getAll{{ClassName}}(){		
 		
-		
+		if(logger.isInfoEnabled()) {
+			logger.info(" get all the resources");
+		}
 		return {{className}}Repository.findAll();
 	}
 	
 	/**
-	 * Simple DELETE Method
+	 * This method is used to delete the resource based on resource object.
 	 * 
 	 * 
 	 */	

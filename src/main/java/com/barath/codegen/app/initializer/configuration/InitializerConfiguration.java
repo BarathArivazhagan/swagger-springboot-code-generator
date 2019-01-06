@@ -58,22 +58,7 @@ public class InitializerConfiguration {
 		this.postProcessors = list != null ? list : new ArrayList<>();
 	}
 
-//	@Bean
-//	public WebConfig webConfig() {
-//		return new WebConfig();
-//	}
 
-	/*@Bean
-	@ConditionalOnMissingBean
-	public CustomMainController initializrCustomMainController(
-			InitializrMetadataProvider metadataProvider,
-			TemplateRenderer templateRenderer,
-			ResourceUrlProvider resourceUrlProvider,
-			ProjectGenerator projectGenerator,
-			DependencyMetadataProvider dependencyMetadataProvider) {
-		return new CustomMainController(metadataProvider, templateRenderer, resourceUrlProvider
-				, projectGenerator, dependencyMetadataProvider);
-	}*/
 
 	@Bean
 	@ConditionalOnMissingBean
