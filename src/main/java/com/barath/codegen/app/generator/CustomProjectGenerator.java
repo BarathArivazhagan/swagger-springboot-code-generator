@@ -1,13 +1,17 @@
 package com.barath.codegen.app.generator;
 
 import java.io.File;
+import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.barath.codegen.app.constant.CodeGenerationConstants;
 import com.barath.codegen.app.model.RequestModel;
 import com.barath.codegen.app.service.SwaggerCodegenService;
 import com.barath.codegen.app.util.PropertyResolverUtility;
@@ -18,6 +22,8 @@ import io.spring.initializr.generator.ProjectRequest;
 
 @Component
 public class CustomProjectGenerator extends ProjectGenerator {
+	
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 		
 	@Autowired
 	private SwaggerCodegenService swaggerCodeGen;
@@ -38,18 +44,18 @@ public class CustomProjectGenerator extends ProjectGenerator {
 		
 		
 		Map<String,Object> model=new HashMap<>();
-		model.put("applicationName", request.getApplicationName());
-		model.put("artifactId", request.getArtifactId());
-		model.put("packaging", request.getPackaging());		
-		model.put("baseDir", request.getBaseDir());
-		model.put("version","1.0.0-SNAPSHOT");
+		model.put(CodeGenerationConstants.APPLICATION_NAME, request.getApplicationName());
+		model.put(CodeGenerationConstants.ARTIFACT_ID, request.getArtifactId());
+		model.put(CodeGenerationConstants.PACKAGAING, request.getPackaging());		
+		model.put(CodeGenerationConstants.BASE_DIR, request.getBaseDir());
+		model.put(CodeGenerationConstants.VERSION,"1.0.0-SNAPSHOT");
 		if(isMavenBuild(request)) {
 			model.put("mavenBuild", true);
 		}	
 		File dir=generateProjectStructure(request);
-		System.out.println("Generated base sturcture "+dir);		
+		if(logger.isInfoEnabled()) { logger.info("Generated base sturcture {}",dir); }		
 		generateTemplateCodegen(dir,request);
-		swaggerCodeGen.generateSwaggerCodegen(dir,request);		
+		this.swaggerCodeGen.generateSwaggerCodegen(dir,request);		
 		generateDockerFile(dir, model);	
 		return dir;
 	}
@@ -63,8 +69,8 @@ public class CustomProjectGenerator extends ProjectGenerator {
 		if(isMavenBuild(originalRequest)) {
 			model.put("mavenBuild", true);
 		}	
-		model.put("version","1.0.0-SNAPSHOT");
-		System.out.println("POM MODEL "+model);
+		model.put("version","0.0.1-SNAPSHOT");
+		if(logger.isInfoEnabled()) { logger.info("POM MODEL {}",model); }
 		return model;
 	}
 	
