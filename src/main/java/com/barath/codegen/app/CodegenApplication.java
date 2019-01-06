@@ -20,18 +20,13 @@ import org.springframework.web.servlet.resource.ResourceUrlProvider;
 
 @SpringBootApplication(exclude={InitializrAutoConfiguration.class})
 @EnableCaching
-public class MicroserviceCodegenApplication {
+public class CodegenApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MicroserviceCodegenApplication.class, args);
+		SpringApplication.run(CodegenApplication.class, args);
 	}
 	
-	@Bean
-	@SuppressWarnings("deprecation")
-	public LegacyStsController legacyStsController(InitializrMetadataProvider metadataProvider,
-			ResourceUrlProvider resourceUrlProvider) {
-		return new LegacyStsController(metadataProvider, resourceUrlProvider);
-	}
+	
 
 	@Configuration
 	@EnableAsync

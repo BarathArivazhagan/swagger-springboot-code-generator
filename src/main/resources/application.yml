@@ -3,9 +3,10 @@
 codegen:
   template:
     templates:
-      - CRUD-REPOSITORY
-      - JPA-REPOSITORY
-      - RABBITMQ-TEMPLATE
+      - spring data jpa
+      - spring rabbitmq
+      - spring kafka
+      - spring data mongodb reactive
 
 
 logging:

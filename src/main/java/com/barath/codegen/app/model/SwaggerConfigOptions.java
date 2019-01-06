@@ -44,7 +44,7 @@ public class SwaggerConfigOptions {
 
 	public SwaggerConfigOptions() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 	
 	
